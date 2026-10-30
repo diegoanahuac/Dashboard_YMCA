@@ -6,7 +6,8 @@
   "scripts": {
     "datos": "python3 scripts/generar_datos_demo.py",
     "build": "python3 scripts/construir_pagina.py && python3 scripts/preparar_store.py > /dev/null",
-    "test": "node tests/test.js"
+    "test": "node tests/test.js",
+    "capturas": "node tests/capturas.js"
   },
   "devDependencies": {
     "d3": "7.9.0",
