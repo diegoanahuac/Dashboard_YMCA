@@ -7,7 +7,7 @@ Dashboard regional del sistema MEAL (Monitoreo, Evaluación, Rendición de cuent
 - Dashboard publicado (Claude Artifacts, privado): https://claude.ai/artifact/K93wRCYcBYdMAByqCdEwq5
 - Análisis, propuesta y decisiones: https://claude.ai/artifact/96bQGvVER99TTLyUK5U4Sy
 
-![Resumen regional con la barra de filtros](docs/img/01-resumen.png)
+![Resumen regional con la barra de filtros](docs/img/01-resumen-oscuro.png)
 
 ## Cómo se navega
 
@@ -39,7 +39,7 @@ Los valores iniciales de los filtros viven en `dashboard/store/dash/params.json`
 
 Eleva, After School, Tejiendo Paz y Patrocinios Delta comparten el mismo bloque: participantes con variación frente al ciclo anterior, YMCA, países, fondos, mapa, pirámide de edad y género, dona de género y series por ciclo.
 
-![Bloque común de Eleva](docs/img/02-eleva-bloque-comun.png)
+![Bloque común de Eleva](docs/img/02-eleva-bloque-comun-oscuro.png)
 
 El bloque se genera con una sola función en `scripts/construir_pagina.py`, así que es idéntico en los cuatro programas. Para agregar una tarjeta a todos, se cambia aquí:
 
@@ -71,7 +71,7 @@ return { programa: r.programa, ciclo: r.ciclo, ymca: r.ymca, indicador: r.indica
 
 Si una YMCA no reportó un valor, el dashboard dice «s/d» y avisa cuántas YMCA faltan en el total. En el Histórico, la gráfica marca con «*» los ciclos incompletos.
 
-![Vista histórica con YMCA sin dato](docs/img/09-historico-sin-dato.png)
+![Vista histórica con YMCA sin dato](docs/img/09-historico-sin-dato-oscuro.png)
 
 Así llega ese caso en `data/indicadores.json`: la fila de la YMCA tiene `valor: null` con su estado, y la fila precalculada «Todas» trae `faltantes`:
 
@@ -94,7 +94,7 @@ Los estados posibles son `s/d`, `No recopilado`, `En definición`, `<5` y `No im
 
 En la vista por YMCA, los conteos de acompañamiento menores a 5 se muestran como «<5». El valor ni siquiera se guarda en los datos.
 
-![Acompañamiento con valores ocultos](docs/img/03-eleva-acompanamiento-por-ymca.png)
+![Acompañamiento con valores ocultos](docs/img/03-eleva-acompanamiento-por-ymca-oscuro.png)
 
 La regla está en `scripts/generar_datos_demo.py` y debe aplicarse igual cuando lleguen los datos reales:
 
@@ -107,7 +107,7 @@ for r in cat_rows:
 
 En Tejiendo Paz, los grupos prioritarios se cuentan como número de YMCA, nunca de personas, y se ocultan al elegir una sola YMCA.
 
-![Grupos prioritarios de Tejiendo Paz](docs/img/07-tejiendo-grupos-prioritarios.png)
+![Grupos prioritarios de Tejiendo Paz](docs/img/07-tejiendo-grupos-prioritarios-oscuro.png)
 
 ```html
 <div class="m-chart" data-draw="barras" data-prog="tejiendo" data-source="categorias implementaciones" data-dim="grupos_prioritarios" data-orden="fijo" data-privado="1"></div>
@@ -117,29 +117,29 @@ En Tejiendo Paz, los grupos prioritarios se cuentan como número de YMCA, nunca 
 
 Eleva muestra el equipo, las intervenciones, el alcance comunitario, el cronograma de todas las YMCA juntas, las alianzas y las fichas de comunidad.
 
-![Cronograma y alianzas de Eleva](docs/img/04-eleva-cronograma.png)
+![Cronograma y alianzas de Eleva](docs/img/04-eleva-cronograma-oscuro.png)
 
 After School compara los terms de cada YMCA, los días de lunes a domingo, la modalidad y las áreas de intervención.
 
-![Implementación de After School](docs/img/05-afterschool-implementacion.png)
+![Implementación de After School](docs/img/05-afterschool-implementacion-oscuro.png)
 
 Bluedrop vive como pestaña dentro de After School, con sus dispositivos por tipo y modelo.
 
-![Dispositivos de Bluedrop](docs/img/06-bluedrop.png)
+![Dispositivos de Bluedrop](docs/img/06-bluedrop-oscuro.png)
 
 Patrocinios Delta muestra participantes y fondos por evento, el cronograma, el detalle y la narrativa.
 
-![Eventos de Patrocinios Delta](docs/img/08-delta-eventos.png)
+![Eventos de Patrocinios Delta](docs/img/08-delta-eventos-oscuro.png)
 
 La página «Notas sobre los datos» explica los estados, los supuestos y cuántos valores faltan por programa y ciclo.
 
-![Notas y completitud](docs/img/10-notas-completitud.png)
+![Notas y completitud](docs/img/10-notas-completitud-oscuro.png)
 
 ## En el celular
 
 A 390 px todo pasa a una columna en el mismo orden de lectura y las tarjetas quedan de dos en dos.
 
-<img src="docs/img/11-movil.png" alt="Eleva en el celular" width="320">
+<img src="docs/img/11-movil-oscuro.png" alt="Eleva en el celular" width="320">
 
 ## Trazabilidad de cada cifra
 

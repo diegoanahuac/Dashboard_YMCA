@@ -9,17 +9,17 @@ const OSCURO = `:root { color-scheme: dark; --color-fg:#ececec; --color-fg-muted
   html, body { background: #0d0d0d; color: #ececec; }`;
 const base = { programa: 'resumen', vista: 'ciclo', ciclo: '2026', ymca: 'Todas', astab: 'programa' };
 const shots = [
-  ['01-resumen.png', base, '.m-head, .m-bar, #resumen', 1280],
-  ['02-eleva-bloque-comun.png', { ...base, programa: 'eleva' }, '#eleva-comun', 1280],
-  ['03-eleva-acompanamiento-por-ymca.png', { ...base, programa: 'eleva', ymca: 'YMCA Demo B' }, '#eleva-acompanamiento', 1280],
-  ['04-eleva-cronograma.png', { ...base, programa: 'eleva' }, '#eleva-implementacion', 1280],
-  ['05-afterschool-implementacion.png', { ...base, programa: 'afterschool' }, '#afterschool-implementacion', 1280],
-  ['06-bluedrop.png', { ...base, programa: 'afterschool', astab: 'bluedrop' }, '#bluedrop-dispositivos', 1280],
-  ['07-tejiendo-grupos-prioritarios.png', { ...base, programa: 'tejiendo' }, '#tejiendo-grupos', 1280],
-  ['08-delta-eventos.png', { ...base, programa: 'delta' }, '#delta-eventos', 1280],
-  ['09-historico-sin-dato.png', { ...base, programa: 'eleva', vista: 'historico' }, '#eleva-comun', 1280],
-  ['10-notas-completitud.png', { ...base, programa: 'notas' }, '#notas', 1280],
-  ['11-movil.png', { ...base, programa: 'eleva' }, 'viewport', 390],
+  ['01-resumen-oscuro.png', base, '.m-head, .m-bar, #resumen', 1280],
+  ['02-eleva-bloque-comun-oscuro.png', { ...base, programa: 'eleva' }, '#eleva-comun', 1280],
+  ['03-eleva-acompanamiento-por-ymca-oscuro.png', { ...base, programa: 'eleva', ymca: 'YMCA Demo B' }, '#eleva-acompanamiento', 1280],
+  ['04-eleva-cronograma-oscuro.png', { ...base, programa: 'eleva' }, '#eleva-implementacion', 1280],
+  ['05-afterschool-implementacion-oscuro.png', { ...base, programa: 'afterschool' }, '#afterschool-implementacion', 1280],
+  ['06-bluedrop-oscuro.png', { ...base, programa: 'afterschool', astab: 'bluedrop' }, '#bluedrop-dispositivos', 1280],
+  ['07-tejiendo-grupos-prioritarios-oscuro.png', { ...base, programa: 'tejiendo' }, '#tejiendo-grupos', 1280],
+  ['08-delta-eventos-oscuro.png', { ...base, programa: 'delta' }, '#delta-eventos', 1280],
+  ['09-historico-sin-dato-oscuro.png', { ...base, programa: 'eleva', vista: 'historico' }, '#eleva-comun', 1280],
+  ['10-notas-completitud-oscuro.png', { ...base, programa: 'notas' }, '#notas', 1280],
+  ['11-movil-oscuro.png', { ...base, programa: 'eleva' }, 'viewport', 390],
 ];
 (async () => {
   const b = await chromium.launch();
