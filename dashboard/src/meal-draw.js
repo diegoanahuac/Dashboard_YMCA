@@ -153,8 +153,8 @@
       const hv = val(r, 'Hombre/niño'), mv = val(r, 'Mujer/niña'), nb = val(r, 'No binario'), ne = val(r, 'No especifica');
       const g = s.append('g');
       g.append('text').attr('x', labelW).attr('y', y(i) + rowH / 2 + 4).attr('text-anchor', 'end').text(largo ? nombre : r);
-      g.append('rect').attr('x', cx - x(hv)).attr('y', y(i) + 2).attr('width', x(hv)).attr('height', rowH - 4).attr('rx', 2).attr('fill', M.colorGenero('Hombre/niño'));
-      g.append('rect').attr('x', cx).attr('y', y(i) + 2).attr('width', x(mv)).attr('height', rowH - 4).attr('rx', 2).attr('fill', M.colorGenero('Mujer/niña'));
+      g.append('rect').attr('x', cx - x(hv)).attr('y', y(i) + 2).attr('width', x(hv)).attr('height', rowH - 4).attr('fill', M.colorGenero('Hombre/niño'));
+      g.append('rect').attr('x', cx).attr('y', y(i) + 2).attr('width', x(mv)).attr('height', rowH - 4).attr('fill', M.colorGenero('Mujer/niña'));
       if (hv) g.append('text').attr('x', cx - x(hv) - 4).attr('y', y(i) + rowH / 2 + 4).attr('text-anchor', 'end').text(fmt(hv));
       if (mv) g.append('text').attr('x', cx + x(mv) + 4).attr('y', y(i) + rowH / 2 + 4).text(fmt(mv));
       g.append('rect').attr('x', labelW + 8).attr('y', y(i)).attr('width', w - labelW - 8).attr('height', rowH).attr('fill', 'transparent')
@@ -217,12 +217,12 @@
       const sel = !k.hist && d.c === k.ciclo;
       const bw = Math.min(56, x.bandwidth()), bx = x(d.c) + (x.bandwidth() - bw) / 2;
       if (d.v != null) {
-        s.append('rect').attr('x', bx).attr('y', y(d.v)).attr('width', bw).attr('height', y(0) - y(d.v)).attr('rx', 3)
+        s.append('rect').attr('x', bx).attr('y', y(d.v)).attr('width', bw).attr('height', y(0) - y(d.v))
           .attr('fill', sel || k.hist ? M.colorProg(p) : 'var(--cds-chart-muted)')
           .on('mousemove', (e) => t.show(e, `Ciclo ${d.c}`, [[box.dataset.label || ind, lbl(d.v)], ...(d.falt ? [['YMCA sin dato', String(d.falt)]] : [])])).on('mouseleave', () => t.hide());
         s.append('text').attr('x', bx + bw / 2).attr('y', y(d.v) - 5).attr('text-anchor', 'middle').attr('class', 'm-strong').text(lbl(d.v) + (d.falt ? '*' : ''));
       } else {
-        s.append('rect').attr('x', bx).attr('y', m.t + 20).attr('width', bw).attr('height', h - m.b - m.t - 20).attr('rx', 3).attr('fill', 'none').attr('stroke', 'var(--color-border-line)').attr('stroke-dasharray', '4 3');
+        s.append('rect').attr('x', bx).attr('y', m.t + 20).attr('width', bw).attr('height', h - m.b - m.t - 20).attr('fill', 'none').attr('stroke', 'var(--color-border-line)').attr('stroke-dasharray', '4 3');
         s.append('text').attr('x', bx + bw / 2).attr('y', h - m.b - 8).attr('text-anchor', 'middle').text(M.ESTADO[d.estado] ? M.ESTADO[d.estado][0] : d.estado);
       }
       s.append('text').attr('x', bx + bw / 2).attr('y', h - 8).attr('text-anchor', 'middle').attr('class', sel ? 'm-strong' : null).text(d.c);
@@ -259,7 +259,7 @@
       const yy = i * rowH + 4;
       s.append('text').attr('x', labelW - 8).attr('y', yy + rowH / 2 + 2).attr('text-anchor', 'end').text(nombre(r.categoria));
       if (r.estado === 'dato') {
-        s.append('rect').attr('x', labelW).attr('y', yy + 3).attr('height', rowH - 10).attr('width', Math.max(1, x(Number(r.valor) || 0))).attr('rx', 3).attr('fill', M.colorProg(p))
+        s.append('rect').attr('x', labelW).attr('y', yy + 3).attr('height', rowH - 10).attr('width', Math.max(1, x(Number(r.valor) || 0))).attr('fill', M.colorProg(p))
           .on('mousemove', (e) => t.show(e, nombre(r.categoria), [[unidad, lbl(r.valor)]])).on('mouseleave', () => t.hide());
         s.append('text').attr('x', labelW + x(Number(r.valor) || 0) + 6).attr('y', yy + rowH / 2 + 2).attr('class', 'm-strong').text(lbl(r.valor));
       } else {
@@ -292,7 +292,7 @@
       DIAS.forEach((d) => {
         const r = rs.find((x2) => x2.ymca === y && x2.categoria === d);
         const on = r && Number(r.valor) === 1;
-        s.append('rect').attr('x', x(d)).attr('y', yy + 3).attr('width', x.bandwidth()).attr('height', rowH - 6).attr('rx', 3)
+        s.append('rect').attr('x', x(d)).attr('y', yy + 3).attr('width', x.bandwidth()).attr('height', rowH - 6)
           .attr('fill', on ? M.colorProg('afterschool') : 'none').attr('stroke', 'var(--color-border-line)');
         s.append('text').attr('x', x(d) + x.bandwidth() / 2).attr('y', yy + rowH / 2 + 4).attr('text-anchor', 'middle').attr('fill', on ? 'var(--color-bg)' : null).text(on ? '✓' : '·');
       });
@@ -331,7 +331,7 @@
       prev = r.ymca;
       s.append('text').attr('x', labelW - 8).attr('y', yy + rowH / 2 + 4).attr('text-anchor', 'end').text(lab(r));
       const x1 = x(r.a), x2 = Math.max(x1 + 4, x(d3.utcDay.offset(r.b, 1)));
-      s.append('rect').attr('x', x1).attr('y', yy + 4).attr('width', x2 - x1).attr('height', rowH - 8).attr('rx', 3).attr('fill', M.colorProg(p))
+      s.append('rect').attr('x', x1).attr('y', yy + 4).attr('width', x2 - x1).attr('height', rowH - 8).attr('fill', M.colorProg(p))
         .on('mousemove', (e) => t.show(e, r.actividad, [['YMCA', r.ymca], ['Inicio', fd(r.a)], ['Fin', fd(r.b)]])).on('mouseleave', () => t.hide());
     });
   });
@@ -355,7 +355,7 @@
     rs.forEach((r, i) => {
       const yy = i * rowH + 4;
       s.append('text').attr('x', labelW - 8).attr('y', yy + rowH / 2 + 2).attr('text-anchor', 'end').text(r.evento);
-      s.append('rect').attr('x', labelW).attr('y', yy + 3).attr('height', rowH - 9).attr('width', Math.max(1, x(Number(r[field])))).attr('rx', 3).attr('fill', M.colorProg('delta'))
+      s.append('rect').attr('x', labelW).attr('y', yy + 3).attr('height', rowH - 9).attr('width', Math.max(1, x(Number(r[field])))).attr('fill', M.colorProg('delta'))
         .on('mousemove', (e) => t.show(e, r.evento, [['YMCA', r.ymca], ['Fecha', String(r.inicio)], [field === 'fondos_usd' ? 'Fondos' : 'Participantes', lbl(r[field])]])).on('mouseleave', () => t.hide());
       s.append('text').attr('x', labelW + x(Number(r[field])) + 6).attr('y', yy + rowH / 2 + 2).attr('class', 'm-strong').text(lbl(r[field]));
     });
@@ -380,7 +380,7 @@
       s.append('text').attr('x', labelW - 8).attr('y', yy + rowH / 2 + 3).attr('text-anchor', 'end').text(y.replace('YMCA ', ''));
       progs.forEach((p) => {
         const n = im.filter((r) => r.programa === p && r.ymca === y && (k.hist || r.ciclo === k.ciclo)).length;
-        s.append('rect').attr('x', x(p)).attr('y', yy + 3).attr('width', x.bandwidth()).attr('height', rowH - 6).attr('rx', 3)
+        s.append('rect').attr('x', x(p)).attr('y', yy + 3).attr('width', x.bandwidth()).attr('height', rowH - 6)
           .attr('fill', n ? M.colorProg(p) : 'none').attr('fill-opacity', n ? 0.9 : 0).attr('stroke', 'var(--color-border-line)');
         s.append('text').attr('x', x(p) + x.bandwidth() / 2).attr('y', yy + rowH / 2 + 4).attr('text-anchor', 'middle').attr('fill', n ? 'var(--color-bg)' : null)
           .text(n ? (k.hist ? `${n} ${n === 1 ? 'ciclo' : 'ciclos'}` : '✓') : '·');
