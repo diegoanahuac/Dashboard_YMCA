@@ -88,12 +88,18 @@
     const porY = d3.groups(im, (r) => r.ymca).map(([ymca, rs]) => ({ ymca, pais: rs[0].pais, ciudad: rs[0].ciudad, lat: +rs[0].lat, lon: +rs[0].lon, programas: [...new Set(rs.map((r) => r.programa))] }));
     const h = Math.min(420, Math.max(260, Math.floor((box.clientWidth || 400) * 0.95)));
     const { s, w } = svg(box, h);
-    const extent = { type: 'MultiPoint', coordinates: [[-118, 33], [-34, -56]] };
-    const proj = d3.geoMercator().fitExtent([[10, 10], [w - 10, h - 10]], extent);
-    const path = d3.geoPath(proj);
-    s.append('path').attr('d', path(d3.geoGraticule().step([10, 10])())).attr('fill', 'none').attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
-    s.append('path').attr('d', path({ type: 'LineString', coordinates: d3.range(-118, -33, 1).map((x) => [x, 0]) })).attr('fill', 'none').attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
-    s.append('text').attr('x', 14).attr('y', proj([-118, 0])[1] - 4).text('Ecuador');
+    // Proyección Mercator propia: esta versión de d3 no incluye d3-geo.
+    const merc = ([lon, lat]) => [lon, Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
+    const [x0, y0] = merc([-118, 33]), [x1, y1] = merc([-34, -56]);
+    const sc = Math.min((w - 20) / (x1 - x0), (h - 20) / (y0 - y1));
+    const ox = (w - sc * (x1 - x0)) / 2, oy = (h - sc * (y0 - y1)) / 2;
+    const proj = (c) => { const [mx, my] = merc(c); return [ox + sc * (mx - x0), oy + sc * (y0 - my)]; };
+    const grid = s.append('g').attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+    for (let lon = -110; lon <= -40; lon += 10) { const [a] = proj([lon, 0]); grid.append('line').attr('x1', a).attr('x2', a).attr('y1', proj([lon, 33])[1]).attr('y2', proj([lon, -56])[1]); }
+    for (let lat = -50; lat <= 30; lat += 10) { if (lat === 0) continue; const [, b] = proj([0, lat]); grid.append('line').attr('x1', proj([-118, lat])[0]).attr('x2', proj([-34, lat])[0]).attr('y1', b).attr('y2', b); }
+    const eq = proj([-118, 0])[1];
+    s.append('line').attr('x1', proj([-118, 0])[0]).attr('x2', proj([-34, 0])[0]).attr('y1', eq).attr('y2', eq).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    s.append('text').attr('x', proj([-118, 0])[0] + 4).attr('y', eq - 4).text('Ecuador');
     const t = tip(box);
     const g = s.append('g').selectAll('g').data(porY).join('g').attr('transform', (d) => `translate(${proj([d.lon, d.lat])})`);
     g.append('circle').attr('r', (d) => 5 + 2 * d.programas.length).attr('fill', (d) => (p === 'todos' ? 'var(--color-fg)' : M.colorProg(p))).attr('fill-opacity', 0.85).attr('stroke', 'var(--color-panel)').attr('stroke-width', 2)
