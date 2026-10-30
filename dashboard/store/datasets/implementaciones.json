@@ -1,0 +1,14 @@
+{
+ "title": "Sample: implementaciones",
+ "description": "Qué YMCA implementa cada programa en cada ciclo, con país, ciudad sede y coordenadas. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/1d2544941ffaf40316827e927c4a50ed",
+  "name": "implementaciones.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

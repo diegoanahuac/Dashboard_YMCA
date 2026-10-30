@@ -1,0 +1,14 @@
+{
+ "title": "Sample: indicadores principales",
+ "description": "Valor por programa, ciclo, YMCA e indicador, con su estado (dato, sin_dato, no_recopilado, en_definicion) y filas precalculadas para Histórico y Todas las YMCA. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/09599f2f473df8b87103996938ff3bdb",
+  "name": "indicadores.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

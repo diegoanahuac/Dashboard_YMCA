@@ -1,0 +1,14 @@
+{
+ "title": "Sample: cronogramas",
+ "description": "Fases, terms y eventos con fecha de inicio y fin por programa y YMCA. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/3c559e909422f76f6ea22a3350f829a6",
+  "name": "cronogramas.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

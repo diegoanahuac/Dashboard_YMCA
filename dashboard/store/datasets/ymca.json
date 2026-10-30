@@ -1,0 +1,14 @@
+{
+ "title": "Sample: catálogo de YMCA",
+ "description": "YMCA ficticias de demostración con país y ciudad sede. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/2cfa62f6ed26c42bb87e8fc38cec0375",
+  "name": "ymca.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

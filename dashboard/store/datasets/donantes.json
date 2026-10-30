@@ -1,0 +1,14 @@
+{
+ "title": "Sample: donantes",
+ "description": "Donantes por programa, ciclo y YMCA. Delta Air Lines es el donante de Patrocinios Delta; los demás son ficticios. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/6c49541f8ccd74132f330e279502bfe0",
+  "name": "donantes.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

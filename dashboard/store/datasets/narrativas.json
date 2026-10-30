@@ -1,0 +1,14 @@
+{
+ "title": "Sample: fichas narrativas",
+ "description": "Descripción de la comunidad y actividades: textos de ejemplo. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/8a4064a76aa2caeb1e8bccb25a883f8c",
+  "name": "narrativas.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "title": "Sample: perfiles por programa",
+ "description": "Áreas, días, modalidad y uso de fondos de After School; dispositivos de Bluedrop; acompañamiento y alcance de Eleva; grupos prioritarios (solo número de YMCA) y tipo de violencia de Tejiendo Paz. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/abef65dd8ae7bd2745bca2b6a462201c",
+  "name": "categorias.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

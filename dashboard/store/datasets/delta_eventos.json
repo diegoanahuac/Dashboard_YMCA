@@ -1,0 +1,14 @@
+{
+ "title": "Sample: eventos Delta",
+ "description": "Eventos de Patrocinios Delta con participantes, fondos USD y voluntariado corporativo. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/b925bfb42fbcfad6472079ff33301dea",
+  "name": "delta_eventos.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

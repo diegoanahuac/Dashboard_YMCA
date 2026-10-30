@@ -1,0 +1,14 @@
+{
+ "title": "Sample: edad por género",
+ "description": "Conteos por los 11 rangos de edad y 4 géneros de participantes, equipo de Eleva y líderes de Tejiendo Paz, con Histórico y Todas precalculados. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/2e5d305a3a8cc98cf39cccaa15ba9075",
+  "name": "edad_genero.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

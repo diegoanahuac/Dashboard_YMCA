@@ -1,0 +1,14 @@
+{
+ "title": "Sample: dispositivos Bluedrop",
+ "description": "Dispositivos entregados por tipo y modelo. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/c39986b4dd00d5a8a7a0aeeec8f1490c",
+  "name": "bluedrop_dispositivos.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

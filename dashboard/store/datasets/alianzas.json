@@ -1,0 +1,14 @@
+{
+ "title": "Sample: alianzas",
+ "description": "Organizaciones aliadas ficticias y el objetivo de cada alianza. Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias).",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/7a252493873dda99d5eb049da992b962",
+  "name": "alianzas.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:15:24Z",
+  "by": "Claude (datos de demostración)"
+ }
+}
