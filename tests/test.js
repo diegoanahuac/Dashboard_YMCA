@@ -3,7 +3,10 @@ const fs = require('fs'); const path = require('path');
 const R = path.resolve(__dirname, '..');
 const ds = {}; for (const f of fs.readdirSync(R + '/data')) ds[f.replace('.json', '')] = JSON.parse(fs.readFileSync(R + '/data/' + f));
 const PARAMS = { programa: 'resumen', vista: 'ciclo', ciclo: '2026', ymca: 'Todas', astab: 'programa' };
-const body = fs.readFileSync(R + '/dashboard/dist/index.html', 'utf8').replace(/<script src="([^"]+)"><\/script>/g, (m, f) => `<script>${fs.readFileSync(R + '/dashboard/dist/' + f, 'utf8')}</script>`);
+const body = fs.readFileSync(R + '/dashboard/dist/index.html', 'utf8').replace(/<script src="([^"]+)"><\/script>/g, (m, f) => `<script>${fs.readFileSync(R + '/dashboard/dist/' + f, 'utf8')}</script>`)
+  // Las fuentes viven en /_blob/... dentro de la plataforma; aquí se leen de dashboard/fonts.
+  .replace(/font-family: "([^"]+)"; font-weight: (\d+);([^}]*)url\("\/_blob\/[0-9a-f]+"\)/g, (m, fam, w, rest) =>
+    `font-family: "${fam}"; font-weight: ${w};${rest}url("file://${R}/dashboard/fonts/${fam.toLowerCase().replace(/ /g, '-')}-latin-${w}-normal.woff2")`);
 const page0 = `<!doctype html><html><head><meta charset="utf-8"><style>:root{--color-fg:#1b1b1b;--color-fg-muted:#666;--color-bg:#fff;--color-panel:#fafafa;--color-border-line:#ddd;--color-warn:#a66a00;--color-bad:#c00;--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:16px;--cds-radius:6px;--cds-font-size-caption:12px;--cds-font-size-body:14px;--cds-font-size-heading:16px;--cds-font-size-title:28px;--cds-font-weight-medium:600;--cds-chart-grid:#eee;--cds-chart-axis:#999;--cds-chart-reference:#bbb;--cds-chart-muted:#ccc;--cds-surface-popover:#fff;--cds-border:#ccc;--font-anthropic-sans:sans-serif;--font-anthropic-serif:serif} body{margin:0;padding:16px;font-family:sans-serif}</style>
 <script>${fs.readFileSync(path.resolve(__dirname, '..', 'node_modules', 'd3', 'dist', 'd3.min.js'), 'utf8')}</script><script>delete d3.geoMercator; delete d3.geoPath; delete d3.geoGraticule;</script>
 <script>window.__DATA=${JSON.stringify(ds)};window.__PARAMS=${JSON.stringify(PARAMS)};</script>
