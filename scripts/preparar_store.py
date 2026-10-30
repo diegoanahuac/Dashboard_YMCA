@@ -22,6 +22,7 @@ BLOBS = {
     "donantes": "/_blob/6c49541f8ccd74132f330e279502bfe0",
     "delta_eventos": "/_blob/b925bfb42fbcfad6472079ff33301dea",
     "bluedrop_dispositivos": "/_blob/c39986b4dd00d5a8a7a0aeeec8f1490c",
+    "mapa_paises": "/_blob/4c1fbbaae296413e9a705afef2aa1f75",
 }
 DESC = {
     "indicadores": ("Sample: indicadores principales", "Valor por programa, ciclo, YMCA e indicador, con su estado (dato, sin_dato, no_recopilado, en_definicion) y filas precalculadas para Histórico y Todas las YMCA."),
@@ -35,6 +36,7 @@ DESC = {
     "donantes": ("Sample: donantes", "Donantes por programa, ciclo y YMCA. Delta Air Lines es el donante de Patrocinios Delta; los demás son ficticios."),
     "delta_eventos": ("Sample: eventos Delta", "Eventos de Patrocinios Delta con participantes, fondos USD y voluntariado corporativo."),
     "bluedrop_dispositivos": ("Sample: dispositivos Bluedrop", "Dispositivos entregados por tipo y modelo."),
+    "mapa_paises": ("Contornos de países", "Fronteras de los países de América Latina y el Caribe (Natural Earth 1:50m, dominio público, vía world-atlas), generadas con scripts/generar_mapa.js."),
 }
 NOTA = " Datos de demostración generados por scripts/generar_datos_demo.py (cifras ficticias)."
 
@@ -45,7 +47,7 @@ docs = {
 }
 for k, url in BLOBS.items():
     t, d = DESC[k]
-    docs[("datasets", k)] = {"title": t, "description": d + NOTA, "fixed": True,
+    docs[("datasets", k)] = {"title": t, "description": d + ("" if k == "mapa_paises" else NOTA), "fixed": True,
                              "source": {"kind": "file", "url": url, "name": f"{k}.json"},
                              "updated": {"at": now, "by": "Claude (datos de demostración)"}}
 for f in ("index.html", "meal-core.js", "meal-draw.js", "meal-app.js"):

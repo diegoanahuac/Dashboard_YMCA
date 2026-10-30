@@ -24,4 +24,4 @@ El 30 de octubre de 2026 se decidió avanzar con todas las fases sin esperar res
 | 18 | Idioma | Español; áreas de After School en inglés como en el requerimiento. |
 | 19 | Datos demo | 6 YMCA ficticias, ciclos 2024–2026, con huecos s/d a propósito. |
 
-Ajuste técnico: la plantilla Dashboard no incluye mapas con fronteras, así que la cobertura se dibuja como mapa de puntos (latitud/longitud) con la lista de países.
+Ajuste técnico: la d3 de la plantilla Dashboard no incluye d3-geo, así que el mapa usa una proyección Mercator propia y los contornos de países vienen del dataset `mapa_paises` (Natural Earth 1:50m vía world-atlas, generado con `scripts/generar_mapa.js`).

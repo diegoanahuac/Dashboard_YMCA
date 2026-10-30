@@ -1,0 +1,14 @@
+{
+ "title": "Contornos de países",
+ "description": "Fronteras de los países de América Latina y el Caribe (Natural Earth 1:50m, dominio público, vía world-atlas), generadas con scripts/generar_mapa.js.",
+ "fixed": true,
+ "source": {
+  "kind": "file",
+  "url": "/_blob/4c1fbbaae296413e9a705afef2aa1f75",
+  "name": "mapa_paises.json"
+ },
+ "updated": {
+  "at": "2026-10-30T15:33:14Z",
+  "by": "Claude (datos de demostración)"
+ }
+}

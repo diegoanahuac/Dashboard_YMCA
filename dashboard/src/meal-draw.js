@@ -79,24 +79,32 @@
 
   // ---------- Mapa de cobertura (puntos por ciudad sede) ----------
   dash.draw('mapa', (box) => {
-    if (pending(box, ['implementaciones'])) return;
+    if (pending(box, ['implementaciones', 'mapa_paises'])) return;
     box.replaceChildren();
     const k = keys();
     const p = box.dataset.prog;
     const im = rows('implementaciones').filter((r) => (p === 'todos' ? true : r.programa === p) && inPeriod(r, k));
     if (!im.length) { empty(box, 'Ninguna YMCA implementó en este periodo.'); return; }
     const porY = d3.groups(im, (r) => r.ymca).map(([ymca, rs]) => ({ ymca, pais: rs[0].pais, ciudad: rs[0].ciudad, lat: +rs[0].lat, lon: +rs[0].lon, programas: [...new Set(rs.map((r) => r.programa))] }));
-    const h = Math.min(420, Math.max(260, Math.floor((box.clientWidth || 400) * 0.95)));
+    const h = Math.min(560, Math.max(300, Math.floor((box.clientWidth || 400) * 1.2)));
     const { s, w } = svg(box, h);
     // Proyección Mercator propia: esta versión de d3 no incluye d3-geo.
-    const merc = ([lon, lat]) => [lon, Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
+    const merc = ([lon, lat]) => [(lon * Math.PI) / 180, Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))];
     const [x0, y0] = merc([-118, 33]), [x1, y1] = merc([-34, -56]);
     const sc = Math.min((w - 20) / (x1 - x0), (h - 20) / (y0 - y1));
     const ox = (w - sc * (x1 - x0)) / 2, oy = (h - sc * (y0 - y1)) / 2;
     const proj = (c) => { const [mx, my] = merc(c); return [ox + sc * (mx - x0), oy + sc * (y0 - my)]; };
-    const grid = s.append('g').attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
-    for (let lon = -110; lon <= -40; lon += 10) { const [a] = proj([lon, 0]); grid.append('line').attr('x1', a).attr('x2', a).attr('y1', proj([lon, 33])[1]).attr('y2', proj([lon, -56])[1]); }
-    for (let lat = -50; lat <= 30; lat += 10) { if (lat === 0) continue; const [, b] = proj([0, lat]); grid.append('line').attr('x1', proj([-118, lat])[0]).attr('x2', proj([-34, lat])[0]).attr('y1', b).attr('y2', b); }
+    // Contornos de países (Natural Earth); los países con YMCA participante van resaltados.
+    const conYmca = new Set(porY.map((d) => d.pais));
+    const ring = (r) => 'M' + r.map((c) => proj(c).map((v) => v.toFixed(1)).join(',')).join('L') + 'Z';
+    const tierra = s.append('g');
+    for (const r of rows('mapa_paises')) {
+      let polys; try { polys = JSON.parse(r.geometria); } catch (e) { continue; }
+      tierra.append('path').attr('d', polys.map((poly) => poly.map(ring).join('')).join(''))
+        .attr('fill', conYmca.has(r.pais) ? (p === 'todos' ? 'var(--cds-chart-muted)' : M.colorProg(p)) : 'var(--color-bg)')
+        .attr('fill-opacity', conYmca.has(r.pais) ? 0.35 : 1).attr('fill-rule', 'evenodd')
+        .attr('stroke', 'var(--cds-chart-axis)').attr('stroke-width', 0.6).attr('stroke-linejoin', 'round');
+    }
     const eq = proj([-118, 0])[1];
     s.append('line').attr('x1', proj([-118, 0])[0]).attr('x2', proj([-34, 0])[0]).attr('y1', eq).attr('y2', eq).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
     s.append('text').attr('x', proj([-118, 0])[0] + 4).attr('y', eq - 4).text('Ecuador');
@@ -105,9 +113,9 @@
     g.append('circle').attr('r', (d) => 5 + 2 * d.programas.length).attr('fill', (d) => (p === 'todos' ? 'var(--color-fg)' : M.colorProg(p))).attr('fill-opacity', 0.85).attr('stroke', 'var(--color-panel)').attr('stroke-width', 2)
       .on('mousemove', (e, d) => t.show(e, `${d.ymca}`, [['Ciudad', d.ciudad], ['País', d.pais], ...(p === 'todos' ? [['Programas', d.programas.map((x) => PROG[x]).join(', ')]] : [])]))
       .on('mouseleave', () => t.hide());
-    g.append('text').attr('x', 12).attr('y', 4).attr('class', 'm-strong').text((d) => d.ciudad);
+    g.append('text').attr('x', (d) => (proj([d.lon, d.lat])[0] > w - 100 ? -12 : 12)).attr('text-anchor', (d) => (proj([d.lon, d.lat])[0] > w - 100 ? 'end' : 'start')).attr('y', 4).attr('class', 'm-strong').text((d) => d.ciudad);
     const paises = [...new Set(porY.map((d) => d.pais))].sort();
-    box.append(el('p', 'm-countries', `${paises.length} ${paises.length === 1 ? 'país' : 'países'}: ${paises.join(', ')}. Mapa esquemático de puntos (sin fronteras) en la ciudad sede de cada YMCA.`));
+    box.append(el('p', 'm-countries', `${paises.length} ${paises.length === 1 ? 'país' : 'países'}: ${paises.join(', ')}. Cada punto es la ciudad sede de una YMCA; los países con YMCA participante van resaltados.`));
   });
 
   // ---------- Pirámide edad × género ----------

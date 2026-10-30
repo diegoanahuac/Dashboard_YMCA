@@ -4,13 +4,15 @@
   "private": true,
   "description": "Dashboard regional del sistema MEAL de YMCA Latinoamérica y el Caribe (Producto 3).",
   "scripts": {
-    "datos": "python3 scripts/generar_datos_demo.py",
+    "datos": "python3 scripts/generar_datos_demo.py && node scripts/generar_mapa.js data/mapa_paises.json",
     "build": "python3 scripts/construir_pagina.py && python3 scripts/preparar_store.py > /dev/null",
     "test": "node tests/test.js",
     "capturas": "node tests/capturas.js"
   },
   "devDependencies": {
     "d3": "7.9.0",
-    "playwright": "1.47.2"
+    "playwright": "1.47.2",
+    "topojson-client": "3.1.0",
+    "world-atlas": "2.0.2"
   }
 }

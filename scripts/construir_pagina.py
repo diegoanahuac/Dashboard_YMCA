@@ -63,7 +63,7 @@ def bloque_comun(prog, extra_kpis="", grupo_nota="participaciones registradas en
             + kpi(prog, "ymca_participantes", "YMCA participantes", "movimientos que implementan", var=False)
             + kpi(prog, "paises", "Países", "con implementación", var=False)
             + kpi(prog, "fondos_usd", "Fondos asignados", "en el periodo, USD", fmt="usd"))
-    grid = (card("Cobertura geográfica", "Ciudad sede de cada YMCA participante.", chart("mapa", prog, "implementaciones"))
+    grid = (card("Cobertura geográfica", "Ciudad sede de cada YMCA participante.", chart("mapa", prog, "implementaciones mapa_paises"))
             + card("Edad y género", "Pirámide con los 11 rangos de edad de la coordinación.", chart("piramide", prog, "edad_genero implementaciones", grupo="participantes"))
             + card("Composición por género", "Las cuatro categorías de género.", chart("dona", prog, "edad_genero implementaciones", grupo="participantes"))
             + card("Participantes por ciclo", "El ciclo elegido va resaltado.", chart("serie", prog, "indicadores implementaciones", ind="participantes", label="Participantes"))
@@ -94,7 +94,7 @@ resumen = page("resumen",
               + tarjeta_resumen("tejiendo", "Tejiendo Paz", "Prevención de la violencia")
               + tarjeta_resumen("delta", "Patrocinios Delta", "Eventos y programas con Delta Air Lines") + "</div>")
     + section("Dónde trabajamos", "", '<div class="m-grid">'
-              + card("Mapa regional", "Cada punto es una YMCA; el tamaño crece con el número de programas.", chart("mapa", "todos", "implementaciones"))
+              + card("Mapa regional", "Cada punto es una YMCA; el tamaño crece con el número de programas.", chart("mapa", "todos", "implementaciones mapa_paises"))
               + card("Programas por YMCA", "Qué programas implementa cada movimiento en el periodo.", chart("matriz-prog", "todos", "implementaciones ymca"))
               + "</div>"))
 
